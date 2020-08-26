@@ -5,6 +5,11 @@ const pageService = {
     const pages = await fetch(baseUrl + "pages");
     return pages;
   },
+
+  getPage: async (id) => {
+    const page = await fetch(baseUrl + "pages/" + id);
+    return page;
+  },
 };
 
 export default pageService;

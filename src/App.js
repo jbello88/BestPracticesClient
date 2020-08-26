@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { useStoreState } from "easy-peasy";
 import Login from "./components/Login";
-import Pages from "./components/Pages";
+import Container from "./components/Container";
 
 function App() {
   const user = useStoreState((s) => s.users.user);
@@ -10,7 +10,7 @@ function App() {
   if (user) {
     return (
       <div className="App">
-        <Pages />
+        <Container />
       </div>
     );
   }
