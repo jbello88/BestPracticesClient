@@ -1,5 +1,9 @@
 import React from "react";
 
-export default function Paragraph() {
-  return <div></div>;
+export default function Paragraph({ data }) {
+  return (
+    <>
+      <p>{data.text}</p>
+    </>
+  );
 }

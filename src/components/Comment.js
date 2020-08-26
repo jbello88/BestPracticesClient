@@ -1,5 +1,10 @@
 import React from "react";
 
-export default function Comment() {
-  return <div></div>;
+export default function Comment({ data }) {
+  return (
+    <>
+      <div>{data.content}</div>
+      <div>{data.by}</div>
+    </>
+  );
 }

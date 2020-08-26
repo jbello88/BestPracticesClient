@@ -2,7 +2,7 @@ import React from "react";
 import { useStoreState } from "easy-peasy";
 import PageSummary from "./PageSummary";
 
-export default function Pages({ pageRequested }) {
+export default function Pages() {
   const pages = useStoreState((s) => s.pages.pages);
 
   if (pages?.length === 0) {
@@ -16,7 +16,7 @@ export default function Pages({ pageRequested }) {
   return (
     <div>
       {pages.map((p) => (
-        <PageSummary key={p._id} page={p} pageReqeuested={pageRequested} />
+        <PageSummary key={p._id} page={p} />
       ))}
     </div>
   );

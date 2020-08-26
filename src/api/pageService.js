@@ -1,13 +1,17 @@
-const baseUrl = "http://localhost:4000/";
+const baseUrl = "http://localhost:4000/api/";
 
 const pageService = {
   getAllPages: async () => {
-    const pages = await fetch(baseUrl + "pages");
+    let pages = await fetch(baseUrl + "pages");
+    pages = await pages.json();
     return pages;
   },
 
   getPage: async (id) => {
-    const page = await fetch(baseUrl + "pages/" + id);
+    let page = await fetch(baseUrl + "pages/" + id);
+    page = await page.json();
+    console.log("WWWWWWWWWWWWWWWWWWWWWWWW");
+    console.log(page);
     return page;
   },
 };

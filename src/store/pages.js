@@ -7,7 +7,7 @@ const pages = {
   page: null,
 
   addLoadedPages: action((state, pages) => {
-    state.pages.push(pages);
+    state.pages = pages;
   }),
 
   setPage: action((state, page) => {
@@ -19,18 +19,23 @@ const pages = {
 
   loadPages: thunk(async (actions, payload) => {
     const pages = await pageService.getAllPages();
+    console.log(pages);
     actions.addLoadedPages(pages);
   }),
 
   loadPage: thunk(async (actions, slug, helpers) => {
     const localState = helpers.getState();
-    if (this.cachedPages.has(slug)) {
+    if (localState.cachedPages.has(slug)) {
+      console.log("using Cached version");
       actions.setPage(localState.cachedPages.get(slug));
       return;
     }
 
-    const id = localState.pages.filter((p) => p.slug === slug)[0]._id;
-    const page = await pageService.getPage(id);
+    const smallPage = localState.pages.find((p) => p.slug === slug);
+    console.log(smallPage);
+
+    if (!smallPage) return;
+    const page = await pageService.getPage(smallPage._id);
     actions.setPage(page);
   }),
 };

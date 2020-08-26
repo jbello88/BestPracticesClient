@@ -1,24 +1,22 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  useHistory,
-  Route,
-  Link,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { useStoreActions } from "easy-peasy";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Pages from "./Pages";
 import Page from "./Page";
 import Home from "./Home";
-import About from "./Home";
+import About from "./About";
 
 export default function Container() {
-  const history = useHistory();
-  const pageRequested = (slug) => {
-    history.push("/topic/" + slug);
-  };
+  const loadPages = useStoreActions((actions) => actions.pages.loadPages);
+
+  useEffect(() => {
+    loadPages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Router>
+      <h1>This is the component</h1>
       <div>
         <ul>
           <li>
@@ -34,13 +32,6 @@ export default function Container() {
 
         <hr />
 
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
         <Switch>
           <Route exact path="/">
             <Home />
@@ -49,7 +40,7 @@ export default function Container() {
             <About />
           </Route>
           <Route path="/content">
-            <Pages pageRequested={pageRequested} />
+            <Pages />
           </Route>
           <Route path="/topic/:slug">
             <Page />
