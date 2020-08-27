@@ -5,8 +5,8 @@ export default function PageSummary({ page }) {
   const history = useHistory();
 
   return (
-    <div onClick={() => history.push("/topic/" + page.slug)}>
-      <h2>{page.subject}</h2>
+    <div className="m-4" onClick={() => history.push("/topic/" + page.slug)}>
+      <h3>{page.subject}</h3>
       <p>{page.subtitle}</p>
     </div>
   );

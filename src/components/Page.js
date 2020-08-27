@@ -6,21 +6,78 @@ import Paragraph from "./Paragraph";
 import Picture from "./Picture";
 import Code from "./Code";
 import Video from "./Video";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const createElement = (data) => {
   switch (data.type) {
     case "T":
-      return <Title data={data} />;
+      return (
+        <>
+          <Row>
+            <Col>
+              <Title data={data} />
+            </Col>
+          </Row>
+        </>
+      );
     case "P":
-      return <Paragraph data={data} />;
+      return (
+        <>
+          <Row>
+            <Col>
+              <Paragraph data={data} />
+            </Col>
+          </Row>
+        </>
+      );
+
     case "I":
-      return <Picture data={data} />;
+      return (
+        <>
+          <Row>
+            <Col>
+              <Picture data={data} />
+            </Col>
+          </Row>
+        </>
+      );
+
     case "C":
-      return <Code data={data} />;
+      return (
+        <>
+          <Row>
+            <Col>
+              <Code data={data} />
+            </Col>
+          </Row>
+        </>
+      );
+
     case "V":
-      return <Video data={data} />;
+      return (
+        <>
+          <Row>
+            <Col>
+              <Video data={data} />
+            </Col>
+          </Row>
+        </>
+      );
+
     default:
-      return <div></div>;
+      return (
+        <>
+          <Row>
+            <Col>
+              <Title data={data} />
+            </Col>
+          </Row>
+        </>
+      );
+
+    /*  return <div></div>; */
   }
 };
 
@@ -39,10 +96,10 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <Container className="w-auto mt-5 ">
       {page.elements
         .sort((a, b) => a.order - b.order)
         .map((e) => createElement(e))}
-    </div>
+    </Container>
   );
 }

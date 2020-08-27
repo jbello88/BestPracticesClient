@@ -1,6 +1,9 @@
 import React from "react";
 import { useStoreState } from "easy-peasy";
 import PageSummary from "./PageSummary";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 export default function Pages() {
   const pages = useStoreState((s) => s.pages.pages);
@@ -14,10 +17,16 @@ export default function Pages() {
   }
 
   return (
-    <div>
+    <Container className="w-auto mt-5 ">
       {pages.map((p) => (
-        <PageSummary key={p._id} page={p} />
+        <>
+          <Row>
+            <Col>
+              <PageSummary key={p._id} page={p} />
+            </Col>
+          </Row>
+        </>
       ))}
-    </div>
+    </Container>
   );
 }
